@@ -2,17 +2,9 @@
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    padding: 8px 16px;
+    padding: 5px 16px;
+}
 
-    > .mat-button {
-        &:last-child {
-            margin-left: auto;
-        }
-    }
-
-    > a {
-        text-decoration: inherit;
-        color: inherit;
-        flex: 1;
-    }
+.flex-spacer {
+    flex-grow: 1;
 }
