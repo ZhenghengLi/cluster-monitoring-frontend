@@ -9,6 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -35,6 +36,7 @@ import { NavbarComponent } from './navbar/navbar.component';
         MatDatepickerModule,
         MatNativeDateModule,
         MatFormFieldModule,
+        MatToolbarModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

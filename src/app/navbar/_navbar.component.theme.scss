@@ -2,12 +2,21 @@
 
 @mixin navbar-theme($theme) {
     $primary: map-get($theme, primary);
-
+    $accent: map-get($theme, accent);
     app-navbar {
         color: mat-color($primary, default-contrast);
 
         .navbar-header {
             background: mat-color($primary);
+        }
+
+        .navbar-option {
+            margin-bottom: -1.25em;
+            width: 10em;
+            input {
+                color: mat-color($accent);
+                font-weight: bolder;
+            }
         }
     }
 }

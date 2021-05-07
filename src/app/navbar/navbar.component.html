@@ -1,4 +1,16 @@
 <nav class="navbar-header">
-    <a mat-button routerLink="/"> Cluster Monitoring </a>
+    <a class="title" mat-button routerLink="/"> Cluster Monitoring </a>
     <div class="flex-spacer"></div>
+    <div class="mode">
+        <mat-form-field class="navbar-option">
+            <mat-label>Last hours</mat-label>
+            <input matInput [formControl]="hours" />
+        </mat-form-field>
+        <mat-form-field class="navbar-option">
+            <mat-label>Choose a date</mat-label>
+            <input matInput [matDatepicker]="picker" [formControl]="date" />
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+    </div>
 </nav>
