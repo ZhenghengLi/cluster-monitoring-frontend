@@ -6,9 +6,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-    declarations: [AppComponent],
+    declarations: [AppComponent, NavbarComponent],
     imports: [SharedModule, BrowserModule, AppRoutingModule, StoreModule.forRoot({}, {}), BrowserAnimationsModule],
     providers: [],
     bootstrap: [AppComponent],
