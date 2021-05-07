@@ -1,4 +1,6 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
+import { FormControl } from '@angular/forms';
+import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
     selector: 'app-root',
@@ -8,4 +10,15 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AppComponent {
     title = 'cluster-monitoring-frontend';
+    constructor() {}
+
+    date = new FormControl(new Date());
+
+    printEvent(event: MatDatepickerInputEvent<Date>) {
+        console.log(event.value);
+    }
+
+    clear() {
+        this.date.reset();
+    }
 }

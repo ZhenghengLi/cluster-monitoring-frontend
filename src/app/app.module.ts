@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
@@ -20,7 +20,7 @@ import { NavbarComponent } from './navbar/navbar.component';
     declarations: [AppComponent, NavbarComponent],
     imports: [
         BrowserModule,
-        FormsModule,
+        ReactiveFormsModule,
         HttpClientModule,
         NgxEchartsModule,
         NgxJsonViewerModule,
