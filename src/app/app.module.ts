@@ -2,9 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatButtonModule } from '@angular/material/button';
 import { NgxEchartsModule } from 'ngx-echarts';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,7 +22,6 @@ import { NavbarComponent } from './navbar/navbar.component';
         BrowserModule,
         FormsModule,
         HttpClientModule,
-        MatButtonModule,
         NgxEchartsModule,
         NgxJsonViewerModule,
         NgxEchartsModule.forRoot({
@@ -27,6 +30,11 @@ import { NavbarComponent } from './navbar/navbar.component';
         StoreModule.forRoot({}, {}),
         BrowserAnimationsModule,
         AppRoutingModule,
+        MatButtonModule,
+        MatInputModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatFormFieldModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
