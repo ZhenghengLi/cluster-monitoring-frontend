@@ -1,0 +1,13 @@
+@import "~@angular/material/theming";
+
+@mixin navbar-theme($theme) {
+    $primary: map-get($theme, primary);
+
+    app-navbar {
+        color: mat-color($primary, default-contrast);
+
+        .navbar-header {
+            background: mat-color($primary);
+        }
+    }
+}
