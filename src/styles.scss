@@ -30,6 +30,8 @@ $my-theme: mat-light-theme(
     )
 );
 
+$my-background: map-get($my-theme, background);
+
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
@@ -46,4 +48,5 @@ body {
 body {
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    background: mat-color($my-background, background);
 }

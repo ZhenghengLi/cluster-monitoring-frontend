@@ -9,7 +9,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatCardModule } from '@angular/material/card';
 
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -34,7 +34,7 @@ import { NavbarComponent } from './navbar/navbar.component';
         MatDatepickerModule,
         MatNativeDateModule,
         MatFormFieldModule,
-        MatToolbarModule,
+        MatCardModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
