@@ -39,7 +39,12 @@ export class TimePercentChartComponent implements OnInit {
         },
         yAxis: {
             position: 'right',
-            type: 'value',
+            name: 'percent (%)',
+            nameTextStyle: {
+                fontSize: 14,
+                padding: 20,
+            },
+            nameLocation: 'center',
         },
         tooltip: {
             trigger: 'axis',
@@ -62,8 +67,8 @@ export class TimePercentChartComponent implements OnInit {
         grid: {
             left: 30,
             bottom: 30,
-            right: 70,
-            top: 35,
+            right: 60,
+            top: 40,
         },
         series: [
             {
@@ -72,9 +77,9 @@ export class TimePercentChartComponent implements OnInit {
                 smooth: true,
                 showSymbol: false,
                 data: [
-                    [0, 120],
-                    [10000, 260],
-                    [20000, 390],
+                    [0, 12],
+                    [10000, 26],
+                    [20000, 39],
                 ],
             },
             {
@@ -83,9 +88,9 @@ export class TimePercentChartComponent implements OnInit {
                 smooth: true,
                 showSymbol: false,
                 data: [
-                    [0, 110],
-                    [10000, 290],
-                    [20000, 320],
+                    [0, 11],
+                    [10000, 29],
+                    [20000, 32],
                 ],
             },
             {
@@ -94,9 +99,9 @@ export class TimePercentChartComponent implements OnInit {
                 smooth: true,
                 showSymbol: false,
                 data: [
-                    [0, 210],
-                    [10000, 400],
-                    [20000, 320],
+                    [0, 21],
+                    [10000, 40],
+                    [20000, 32],
                 ],
             },
             {
@@ -105,9 +110,9 @@ export class TimePercentChartComponent implements OnInit {
                 smooth: true,
                 showSymbol: false,
                 data: [
-                    [0, 190],
-                    [10000, 333],
-                    [20000, 410],
+                    [0, 19],
+                    [10000, 33],
+                    [20000, 41],
                 ],
             },
             {
@@ -116,9 +121,9 @@ export class TimePercentChartComponent implements OnInit {
                 smooth: true,
                 showSymbol: false,
                 data: [
-                    [0, 100],
-                    [10000, 200],
-                    [20000, 300],
+                    [0, 10],
+                    [10000, 20],
+                    [20000, 30],
                 ],
             },
             {
@@ -127,9 +132,9 @@ export class TimePercentChartComponent implements OnInit {
                 smooth: true,
                 showSymbol: false,
                 data: [
-                    [0, 150],
-                    [10000, 100],
-                    [20000, 350],
+                    [0, 15],
+                    [10000, 10],
+                    [20000, 35],
                 ],
             },
             {
@@ -138,9 +143,9 @@ export class TimePercentChartComponent implements OnInit {
                 smooth: true,
                 showSymbol: false,
                 data: [
-                    [0, 159],
-                    [10000, 185],
-                    [20000, 395],
+                    [0, 15],
+                    [10000, 18],
+                    [20000, 39],
                 ],
             },
             {
@@ -149,9 +154,9 @@ export class TimePercentChartComponent implements OnInit {
                 smooth: true,
                 showSymbol: false,
                 data: [
-                    [0, 140],
-                    [10000, 135],
-                    [20000, 315],
+                    [0, 14],
+                    [10000, 13],
+                    [20000, 31],
                 ],
             },
         ],
