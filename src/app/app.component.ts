@@ -1,6 +1,4 @@
 import { Component, ElementRef, ViewChild, ViewEncapsulation } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatDatepickerInputEvent } from '@angular/material/datepicker';
 
 @Component({
     selector: 'app-root',
