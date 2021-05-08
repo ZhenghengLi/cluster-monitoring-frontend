@@ -11,7 +11,6 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,7 +29,6 @@ import { NavbarComponent } from './navbar/navbar.component';
         }),
         StoreModule.forRoot({}, {}),
         BrowserAnimationsModule,
-        AppRoutingModule,
         MatButtonModule,
         MatInputModule,
         MatDatepickerModule,
