@@ -10,6 +10,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatListModule } from '@angular/material/list';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
@@ -35,6 +38,9 @@ import { NavbarComponent } from './navbar/navbar.component';
         MatNativeDateModule,
         MatFormFieldModule,
         MatCardModule,
+        MatDividerModule,
+        MatListModule,
+        MatGridListModule,
     ],
     providers: [],
     bootstrap: [AppComponent],
