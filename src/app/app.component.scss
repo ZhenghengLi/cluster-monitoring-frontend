@@ -1,7 +1,6 @@
 app-root {
     display: flex;
     flex-direction: column;
-    height: 100vh;
 }
 
 app-navbar {
@@ -10,9 +9,15 @@ app-navbar {
     left: 0;
     right: 0;
     z-index: 2;
+    min-width: 600px;
 }
 
 div.my-content {
     margin-top: 52px;
     padding: 10px;
+    padding-bottom: 0px;
+}
+
+mat-card {
+    margin-bottom: 10px;
 }
