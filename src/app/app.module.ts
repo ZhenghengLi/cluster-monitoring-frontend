@@ -26,7 +26,6 @@ import { TimePercentChartComponent } from './time-percent-chart/time-percent-cha
         BrowserModule,
         ReactiveFormsModule,
         HttpClientModule,
-        NgxEchartsModule,
         NgxJsonViewerModule,
         NgxEchartsModule.forRoot({
             echarts: () => import('echarts'),
