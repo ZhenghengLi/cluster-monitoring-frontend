@@ -18,9 +18,10 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TimePercentChartComponent } from './time-percent-chart/time-percent-chart.component';
 
 @NgModule({
-    declarations: [AppComponent, NavbarComponent],
+    declarations: [AppComponent, NavbarComponent, TimePercentChartComponent],
     imports: [
         BrowserModule,
         ReactiveFormsModule,
