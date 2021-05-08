@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 })
 export class NavbarComponent implements OnInit, OnDestroy {
     date = new FormControl(null, { updateOn: 'blur' });
-    hours = new FormControl(null, { updateOn: 'blur', validators: [Validators.min(1), Validators.max(24)] });
+    hours = new FormControl(1, { updateOn: 'blur', validators: [Validators.min(1), Validators.max(24)] });
     subs = new Subscription();
 
     constructor() {}

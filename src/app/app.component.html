@@ -4,9 +4,8 @@
         <mat-card-header>
             <mat-card-title>Overview</mat-card-title>
         </mat-card-header>
-        <mat-divider [inset]="true"></mat-divider>
         <mat-card-content>
-            <mat-grid-list cols="2" rowHeight="250px">
+            <mat-grid-list cols="2" rowHeight="250px" gutterSize="4px">
                 <mat-grid-tile>
                     <app-time-percent-chart></app-time-percent-chart>
                 </mat-grid-tile>
@@ -32,6 +31,8 @@
                 <mat-list-item> abc </mat-list-item>
                 <mat-divider [inset]="true"></mat-divider>
                 <mat-list-item> def </mat-list-item>
+                <mat-divider [inset]="true"></mat-divider>
+                <mat-list-item> xyz </mat-list-item>
             </mat-list>
         </mat-card-content>
     </mat-card>
