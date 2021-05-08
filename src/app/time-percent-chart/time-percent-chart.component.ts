@@ -18,17 +18,25 @@ export class TimePercentChartComponent implements OnInit {
     public options: any;
 
     @Input()
-    title: string = 'CPU';
+    title: string = '';
+    @Input()
+    set data(dataVal: any) {
+        // set this._legendData;
+        // set this._seriesData
+        this._updateOptions();
+    }
 
     private _updateOptions(): void {
+        console.log('update');
         this.options = {
             animation: false,
             title: {
                 text: this.title,
-                left: '2%',
+                left: 'center',
                 textStyle: {
-                    fontWeight: 'normal',
-                    fontSize: 16,
+                    fontWeight: 'bold',
+                    fontSize: 15,
+                    lineHeight: 27,
                 },
             },
             xAxis: {
@@ -64,15 +72,17 @@ export class TimePercentChartComponent implements OnInit {
             },
             legend: {
                 type: 'scroll',
-                right: '2%',
-                width: '80%',
+                left: 6,
+                top: 'center',
+                orient: 'vertical',
+                width: '75%',
                 data: this._legendData,
             },
             grid: {
-                left: 30,
+                left: 100,
                 bottom: 30,
                 right: 60,
-                top: 40,
+                top: 45,
             },
             series: this._seriesData,
         };
@@ -158,7 +168,7 @@ export class TimePercentChartComponent implements OnInit {
             ],
         },
         {
-            name: 'gpu03',
+            name: 'gpu04',
             type: 'line',
             smooth: true,
             showSymbol: false,
