@@ -11,7 +11,7 @@ export class TimePercentChartComponent implements OnInit {
     ngOnInit(): void {}
 
     @Input()
-    title: string = 'CPU utilization';
+    title: string = 'CPU';
 
     public initOpts: any = {
         renderer: 'svg',
@@ -21,6 +21,7 @@ export class TimePercentChartComponent implements OnInit {
         animation: false,
         title: {
             text: this.title,
+            left: '2%',
             textStyle: {
                 fontWeight: 'normal',
                 fontSize: 16,
@@ -42,6 +43,9 @@ export class TimePercentChartComponent implements OnInit {
         },
         tooltip: {
             trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+            },
             backgroundColor: 'rgba(255,255,255,0.8)',
             position: (pos: Array<number>, params: any, dom: any, rect: any, size: any) => {
                 let obj: any = { top: '5%' };
@@ -51,6 +55,8 @@ export class TimePercentChartComponent implements OnInit {
         },
         legend: {
             type: 'scroll',
+            right: '2%',
+            width: '80%',
             data: ['cu01', 'cu02', 'cu03', 'cu04', 'gpu01', 'gpu02', 'gpu03', 'gpu04'],
         },
         grid: {
