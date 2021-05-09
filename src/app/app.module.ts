@@ -14,6 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -33,6 +34,7 @@ import { EffectsModule } from '@ngrx/effects';
         }),
         StoreModule.forRoot({}, {}),
         EffectsModule.forRoot([]),
+        AppRoutingModule,
         BrowserAnimationsModule,
         MatButtonModule,
         MatInputModule,
