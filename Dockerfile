@@ -7,6 +7,7 @@ ADD $PWD $SOURCE_DIR
 
 RUN set -x \
     && cd $SOURCE_DIR \
+    && npm install -g npm \
     && npm install \
     && npx ng build --prod
 
@@ -19,5 +20,12 @@ ARG ROOT_DIR=/usr/share/nginx/html
 # copy from builder
 COPY --from=builder $DIST_DIR $ROOT_DIR
 
-# config nginx
+# set runtime environment variables
+ENV API_SERVER_URL="http://localhost:3000"
+
+# copy scripts
 COPY scripts/30-serve-index-when-not-found.sh /docker-entrypoint.d
+COPY scripts/entrypoint.sh /scripts/
+
+ENTRYPOINT [ "/scripts/entrypoint.sh" ]
+CMD ["nginx", "-g", "daemon off;"]
