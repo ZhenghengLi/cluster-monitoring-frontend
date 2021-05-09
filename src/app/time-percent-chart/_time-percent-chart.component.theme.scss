@@ -1,0 +1,10 @@
+@import "~@angular/material/theming";
+
+@mixin time-percent-chart-theme($theme) {
+    $primary: map-get($theme, primary);
+    app-time-percent-chart {
+        div.chart-container {
+            background: mat-color($primary, 0.05);
+        }
+    }
+}

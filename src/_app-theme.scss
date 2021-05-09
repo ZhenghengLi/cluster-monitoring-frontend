@@ -1,5 +1,21 @@
 @import "./app/navbar/navbar.component.theme";
+@import "./app/time-percent-chart/time-percent-chart.component.theme";
+@import "./app/app.component.theme";
 
 @mixin app-theme($theme) {
+    $background: map-get($theme, background);
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        margin: 0;
+        background: mat-color($background, background);
+    }
+
+    @include app-root-theme($theme);
     @include navbar-theme($theme);
+    @include time-percent-chart-theme($theme);
 }

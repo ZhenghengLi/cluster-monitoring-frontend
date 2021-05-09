@@ -1,0 +1,10 @@
+@import "~@angular/material/theming";
+
+@mixin app-root-theme($theme) {
+    $primary: map-get($theme, primary);
+    app-root {
+        mat-card {
+            border: 1px solid mat-color($primary, 0.4);
+        }
+    }
+}
