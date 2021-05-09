@@ -19,6 +19,7 @@ import { StoreModule } from '@ngrx/store';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TimePercentChartComponent } from './time-percent-chart/time-percent-chart.component';
+import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
     declarations: [AppComponent, NavbarComponent, TimePercentChartComponent],
@@ -31,6 +32,7 @@ import { TimePercentChartComponent } from './time-percent-chart/time-percent-cha
             echarts: () => import('echarts'),
         }),
         StoreModule.forRoot({}, {}),
+        EffectsModule.forRoot([]),
         BrowserAnimationsModule,
         MatButtonModule,
         MatInputModule,
