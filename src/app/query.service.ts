@@ -30,7 +30,7 @@ export class QueryService {
         }
     }
 
-    getNodeCpuLoad(minTime: number, maxTime: number): Observable<NodeCpuLoad[]> {
+    private fetchData<T>(endpoint: string, minTime: number, maxTime: number): Observable<T[]> {
         const filter: TimeRangeFilter = {
             where: {
                 time: {
@@ -40,44 +40,22 @@ export class QueryService {
         };
         const params = new HttpParams().set('filter', JSON.stringify(filter));
         return this.getApiServerUrl().pipe(
-            map((url) => url + '/node-cpu-load'),
+            map((url) => url + endpoint),
             concatMap((url) => {
-                return this.http.get<NodeCpuLoad[]>(url, { params });
+                return this.http.get<T[]>(url, { params });
             })
         );
+    }
+
+    getNodeCpuLoad(minTime: number, maxTime: number): Observable<NodeCpuLoad[]> {
+        return this.fetchData<NodeCpuLoad>('/node-cpu-load', minTime, maxTime);
     }
 
     getNodeGpuLoad(minTime: number, maxTime: number): Observable<NodeGpuLoad[]> {
-        const filter: TimeRangeFilter = {
-            where: {
-                time: {
-                    between: [minTime, maxTime],
-                },
-            },
-        };
-        const params = new HttpParams().set('filter', JSON.stringify(filter));
-        return this.getApiServerUrl().pipe(
-            map((url) => url + '/node-gpu-load'),
-            concatMap((url) => {
-                return this.http.get<NodeGpuLoad[]>(url, { params });
-            })
-        );
+        return this.fetchData<NodeGpuLoad>('/node-gpu-load', minTime, maxTime);
     }
 
     getUserCpuMem(minTime: number, maxTime: number): Observable<UserCpuMem[]> {
-        const filter: TimeRangeFilter = {
-            where: {
-                time: {
-                    between: [minTime, maxTime],
-                },
-            },
-        };
-        const params = new HttpParams().set('filter', JSON.stringify(filter));
-        return this.getApiServerUrl().pipe(
-            map((url) => url + '/user-cpu-mem'),
-            concatMap((url) => {
-                return this.http.get<UserCpuMem[]>(url, { params });
-            })
-        );
+        return this.fetchData<UserCpuMem>('/user-cpu-mem', minTime, maxTime);
     }
 }
