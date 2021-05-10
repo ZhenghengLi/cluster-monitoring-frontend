@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { QueryService } from './query.service';
 import { ChartLine } from './state-management/models';
+import { Observable, of } from 'rxjs';
 
 @Component({
     selector: 'app-root',
@@ -17,7 +18,7 @@ export class AppComponent {
         query.getUserCpuMem(now - 3 * 60000, now).subscribe((data) => console.log(data));
     }
 
-    chartData: ChartLine[] = [
+    chartData: Observable<ChartLine[]> = of([
         {
             name: 'cu01',
             data: [
@@ -82,5 +83,5 @@ export class AppComponent {
                 [20000, 31],
             ],
         },
-    ];
+    ]);
 }

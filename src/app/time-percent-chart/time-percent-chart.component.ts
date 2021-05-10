@@ -17,7 +17,8 @@ export class TimePercentChartComponent implements OnInit {
     @Input()
     title: string = '';
     @Input()
-    set data(chartData: ChartLine[]) {
+    set data(chartData: ChartLine[] | null) {
+        if (chartData === null) return;
         // convert
         const legendData = [];
         const seriesData = [];
