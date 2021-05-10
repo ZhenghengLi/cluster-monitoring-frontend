@@ -39,7 +39,6 @@ export class QueryService {
             },
         };
         const params = new HttpParams().set('filter', JSON.stringify(filter));
-
         return this.getApiServerUrl().pipe(
             map((url) => url + '/node-cpu-load'),
             concatMap((url) => {
@@ -49,10 +48,36 @@ export class QueryService {
     }
 
     getNodeGpuLoad(minTime: number, maxTime: number): Observable<NodeGpuLoad[]> {
-        return of([]);
+        const filter: TimeRangeFilter = {
+            where: {
+                time: {
+                    between: [minTime, maxTime],
+                },
+            },
+        };
+        const params = new HttpParams().set('filter', JSON.stringify(filter));
+        return this.getApiServerUrl().pipe(
+            map((url) => url + '/node-gpu-load'),
+            concatMap((url) => {
+                return this.http.get<NodeGpuLoad[]>(url, { params });
+            })
+        );
     }
 
     getUserCpuMem(minTime: number, maxTime: number): Observable<UserCpuMem[]> {
-        return of([]);
+        const filter: TimeRangeFilter = {
+            where: {
+                time: {
+                    between: [minTime, maxTime],
+                },
+            },
+        };
+        const params = new HttpParams().set('filter', JSON.stringify(filter));
+        return this.getApiServerUrl().pipe(
+            map((url) => url + '/user-cpu-mem'),
+            concatMap((url) => {
+                return this.http.get<UserCpuMem[]>(url, { params });
+            })
+        );
     }
 }

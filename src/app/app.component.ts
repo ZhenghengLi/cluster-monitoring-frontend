@@ -12,5 +12,7 @@ export class AppComponent {
     constructor(private query: QueryService) {
         const now = new Date().getTime();
         query.getNodeCpuLoad(now - 3 * 60000, now).subscribe((data) => console.log(data));
+        query.getNodeGpuLoad(now - 3 * 60000, now).subscribe((data) => console.log(data));
+        query.getUserCpuMem(now - 3 * 60000, now).subscribe((data) => console.log(data));
     }
 }
