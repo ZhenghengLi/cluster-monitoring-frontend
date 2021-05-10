@@ -22,6 +22,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { TimePercentChartComponent } from './time-percent-chart/time-percent-chart.component';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers, metaReducers } from './state-management/reducers';
+import { effects } from './state-management/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from '../environments/environment';
 
@@ -35,13 +36,11 @@ import { environment } from '../environments/environment';
         AppRoutingModule,
         // ngx
         NgxJsonViewerModule,
-        NgxEchartsModule.forRoot({
-            echarts: () => import('echarts'),
-        }),
+        NgxEchartsModule.forRoot({ echarts: () => import('echarts') }),
         // ngrx
         StoreModule.forRoot(reducers, { metaReducers }),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
-        EffectsModule.forRoot([]),
+        EffectsModule.forRoot(effects),
         // material
         MatButtonModule,
         MatInputModule,
