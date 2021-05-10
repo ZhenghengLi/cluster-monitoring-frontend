@@ -38,3 +38,7 @@ export interface TimeRangeFilter {
         };
     };
 }
+
+export interface Config {
+    api_server_url: string;
+}

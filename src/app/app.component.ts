@@ -9,5 +9,8 @@ import { QueryService } from './query.service';
 })
 export class AppComponent {
     title = 'cluster-monitoring-frontend';
-    constructor(private query: QueryService) {}
+    constructor(private query: QueryService) {
+        const now = new Date().getTime();
+        query.getNodeCpuLoad(now - 3 * 60000, now).subscribe((data) => console.log(data));
+    }
 }
