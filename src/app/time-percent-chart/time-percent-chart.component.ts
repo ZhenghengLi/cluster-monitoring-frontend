@@ -19,8 +19,8 @@ export class TimePercentChartComponent implements OnInit {
     @Input()
     set data(chartData: ChartLine[]) {
         // convert
-        let legendData = [];
-        let seriesData = [];
+        const legendData = [];
+        const seriesData = [];
         for (let line of chartData) {
             legendData.push(line.name);
             seriesData.push(
@@ -36,7 +36,16 @@ export class TimePercentChartComponent implements OnInit {
         }
         // update options
         this.options = {
-            animation: false,
+            // data
+            series: seriesData,
+            legend: {
+                data: legendData,
+                type: 'scroll',
+                left: 6,
+                top: 'center',
+                orient: 'vertical',
+                width: '75%',
+            },
             title: {
                 text: this.title,
                 left: 'center',
@@ -45,6 +54,14 @@ export class TimePercentChartComponent implements OnInit {
                     fontSize: 15,
                     lineHeight: 27,
                 },
+            },
+            // others
+            animation: false,
+            grid: {
+                left: 100,
+                bottom: 30,
+                right: 60,
+                top: 45,
             },
             xAxis: {
                 boundaryGap: false,
@@ -77,21 +94,6 @@ export class TimePercentChartComponent implements OnInit {
                     return obj;
                 },
             },
-            grid: {
-                left: 100,
-                bottom: 30,
-                right: 60,
-                top: 45,
-            },
-            legend: {
-                type: 'scroll',
-                left: 6,
-                top: 'center',
-                orient: 'vertical',
-                width: '75%',
-                data: legendData,
-            },
-            series: seriesData,
         };
     }
 }
