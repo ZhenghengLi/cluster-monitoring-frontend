@@ -49,14 +49,14 @@ export class QueryService {
     }
 
     getNodeCpuLoad(minTime: number, maxTime: number): Observable<NodeCpuLoad[]> {
-        return this.fetchData<NodeCpuLoad>('/node-cpu-load', minTime, maxTime, ['time', 'node']);
+        return this.fetchData<NodeCpuLoad>('/node-cpu-load', minTime, maxTime, ['node', 'time']);
     }
 
     getNodeGpuLoad(minTime: number, maxTime: number): Observable<NodeGpuLoad[]> {
-        return this.fetchData<NodeGpuLoad>('/node-gpu-load', minTime, maxTime, ['time', 'node', 'busid']);
+        return this.fetchData<NodeGpuLoad>('/node-gpu-load', minTime, maxTime, ['node', 'busid', 'time']);
     }
 
     getUserCpuMem(minTime: number, maxTime: number): Observable<UserCpuMem[]> {
-        return this.fetchData<UserCpuMem>('/user-cpu-mem', minTime, maxTime, ['user', 'time', 'node']);
+        return this.fetchData<UserCpuMem>('/user-cpu-mem', minTime, maxTime, ['user', 'node', 'time']);
     }
 }
