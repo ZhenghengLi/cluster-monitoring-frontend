@@ -44,7 +44,7 @@ export class TimePercentChartComponent implements OnInit {
                 left: 6,
                 top: 'center',
                 orient: 'vertical',
-                width: '75%',
+                height: '90%',
             },
             title: {
                 text: this.title,
