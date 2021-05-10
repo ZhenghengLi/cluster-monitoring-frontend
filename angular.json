@@ -128,5 +128,8 @@
       }
     }
   },
-  "defaultProject": "cluster-monitoring-frontend"
+  "defaultProject": "cluster-monitoring-frontend",
+  "cli": {
+    "defaultCollection": "@ngrx/schematics"
+  }
 }
