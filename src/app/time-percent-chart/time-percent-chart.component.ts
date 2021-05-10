@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ChartLine } from '../state-management/models';
 
 @Component({
     selector: 'app-time-percent-chart',
@@ -8,25 +9,29 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TimePercentChartComponent implements OnInit {
     constructor() {}
 
-    ngOnInit(): void {
-        this._updateOptions();
-    }
+    ngOnInit(): void {}
 
-    public initOpts: any = {
-        renderer: 'svg',
-    };
+    public initOpts: any = { renderer: 'svg' };
     public options: any;
 
     @Input()
     title: string = '';
     @Input()
-    set data(dataVal: any) {
-        // set this._legendData;
-        // set this._seriesData
-        this._updateOptions();
-    }
-
-    private _updateOptions(): void {
+    set data(chartData: ChartLine[]) {
+        // convert
+        let legendData = [];
+        let seriesData = [];
+        for (let line of chartData) {
+            legendData.push(line.name);
+            seriesData.push({
+                name: line.name,
+                type: 'line',
+                smooth: true,
+                showSymbol: false,
+                data: line.data,
+            });
+        }
+        // update options
         this.options = {
             animation: false,
             title: {
@@ -69,113 +74,21 @@ export class TimePercentChartComponent implements OnInit {
                     return obj;
                 },
             },
-            legend: {
-                type: 'scroll',
-                left: 6,
-                top: 'center',
-                orient: 'vertical',
-                width: '75%',
-                data: this._legendData,
-            },
             grid: {
                 left: 100,
                 bottom: 30,
                 right: 60,
                 top: 45,
             },
-            series: this._seriesData,
+            legend: {
+                type: 'scroll',
+                left: 6,
+                top: 'center',
+                orient: 'vertical',
+                width: '75%',
+                data: legendData,
+            },
+            series: seriesData,
         };
     }
-
-    private _legendData: string[] = ['cu01', 'cu02', 'cu03', 'cu04', 'gpu01', 'gpu02', 'gpu03', 'gpu04'];
-    private _seriesData: Object[] = [
-        {
-            name: 'cu01',
-            type: 'line',
-            smooth: true,
-            showSymbol: false,
-            data: [
-                [0, 12],
-                [10000, 26],
-                [20000, 39],
-            ],
-        },
-        {
-            name: 'cu02',
-            type: 'line',
-            smooth: true,
-            showSymbol: false,
-            data: [
-                [0, 11],
-                [10000, 29],
-                [20000, 32],
-            ],
-        },
-        {
-            name: 'cu03',
-            type: 'line',
-            smooth: true,
-            showSymbol: false,
-            data: [
-                [0, 21],
-                [10000, 40],
-                [20000, 32],
-            ],
-        },
-        {
-            name: 'cu04',
-            type: 'line',
-            smooth: true,
-            showSymbol: false,
-            data: [
-                [0, 19],
-                [10000, 33],
-                [20000, 41],
-            ],
-        },
-        {
-            name: 'gpu01',
-            type: 'line',
-            smooth: true,
-            showSymbol: false,
-            data: [
-                [0, 10],
-                [10000, 20],
-                [20000, 30],
-            ],
-        },
-        {
-            name: 'gpu02',
-            type: 'line',
-            smooth: true,
-            showSymbol: false,
-            data: [
-                [0, 15],
-                [10000, 10],
-                [20000, 35],
-            ],
-        },
-        {
-            name: 'gpu03',
-            type: 'line',
-            smooth: true,
-            showSymbol: false,
-            data: [
-                [0, 15],
-                [10000, 18],
-                [20000, 39],
-            ],
-        },
-        {
-            name: 'gpu04',
-            type: 'line',
-            smooth: true,
-            showSymbol: false,
-            data: [
-                [0, 14],
-                [10000, 13],
-                [20000, 31],
-            ],
-        },
-    ];
 }
