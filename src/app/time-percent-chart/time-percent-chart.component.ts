@@ -27,7 +27,6 @@ export class TimePercentChartComponent implements OnInit {
     }
 
     private _updateOptions(): void {
-        console.log('update');
         this.options = {
             animation: false,
             title: {

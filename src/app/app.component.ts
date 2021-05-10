@@ -1,4 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
+import { QueryService } from './query.service';
 
 @Component({
     selector: 'app-root',
@@ -8,5 +9,5 @@ import { Component, ViewEncapsulation } from '@angular/core';
 })
 export class AppComponent {
     title = 'cluster-monitoring-frontend';
-    constructor() {}
+    constructor(private query: QueryService) {}
 }
