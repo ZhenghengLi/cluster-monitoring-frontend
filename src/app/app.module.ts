@@ -21,21 +21,28 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavbarComponent } from './navbar/navbar.component';
 import { TimePercentChartComponent } from './time-percent-chart/time-percent-chart.component';
 import { EffectsModule } from '@ngrx/effects';
+import { reducers, metaReducers } from './state-management/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { environment } from '../environments/environment';
 
 @NgModule({
     declarations: [AppComponent, NavbarComponent, TimePercentChartComponent],
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
         ReactiveFormsModule,
         HttpClientModule,
+        AppRoutingModule,
+        // ngx
         NgxJsonViewerModule,
         NgxEchartsModule.forRoot({
             echarts: () => import('echarts'),
         }),
-        StoreModule.forRoot({}, {}),
+        // ngrx
+        StoreModule.forRoot(reducers, { metaReducers }),
+        !environment.production ? StoreDevtoolsModule.instrument() : [],
         EffectsModule.forRoot([]),
-        AppRoutingModule,
-        BrowserAnimationsModule,
+        // material
         MatButtonModule,
         MatInputModule,
         MatDatepickerModule,
