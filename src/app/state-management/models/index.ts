@@ -32,6 +32,7 @@ export interface UserCpuMem {
 }
 
 export interface TimeRangeFilter {
+    order?: string[];
     where: {
         time: {
             between: [number, number]; // unix timestamp in millisecond

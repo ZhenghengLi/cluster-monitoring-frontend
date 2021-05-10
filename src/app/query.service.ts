@@ -30,8 +30,9 @@ export class QueryService {
         }
     }
 
-    private fetchData<T>(endpoint: string, minTime: number, maxTime: number): Observable<T[]> {
+    private fetchData<T>(endpoint: string, minTime: number, maxTime: number, order?: string[]): Observable<T[]> {
         const filter: TimeRangeFilter = {
+            order,
             where: {
                 time: {
                     between: [minTime, maxTime],
@@ -48,14 +49,14 @@ export class QueryService {
     }
 
     getNodeCpuLoad(minTime: number, maxTime: number): Observable<NodeCpuLoad[]> {
-        return this.fetchData<NodeCpuLoad>('/node-cpu-load', minTime, maxTime);
+        return this.fetchData<NodeCpuLoad>('/node-cpu-load', minTime, maxTime, ['time', 'node']);
     }
 
     getNodeGpuLoad(minTime: number, maxTime: number): Observable<NodeGpuLoad[]> {
-        return this.fetchData<NodeGpuLoad>('/node-gpu-load', minTime, maxTime);
+        return this.fetchData<NodeGpuLoad>('/node-gpu-load', minTime, maxTime, ['time', 'node', 'busid']);
     }
 
     getUserCpuMem(minTime: number, maxTime: number): Observable<UserCpuMem[]> {
-        return this.fetchData<UserCpuMem>('/user-cpu-mem', minTime, maxTime);
+        return this.fetchData<UserCpuMem>('/user-cpu-mem', minTime, maxTime, ['user', 'time', 'node']);
     }
 }
