@@ -23,13 +23,16 @@ export class TimePercentChartComponent implements OnInit {
         let seriesData = [];
         for (let line of chartData) {
             legendData.push(line.name);
-            seriesData.push({
-                name: line.name,
-                type: 'line',
-                smooth: true,
-                showSymbol: false,
-                data: line.data,
-            });
+            seriesData.push(
+                Object.assign(
+                    {
+                        type: 'line',
+                        smooth: true,
+                        showSymbol: false,
+                    },
+                    line
+                )
+            );
         }
         // update options
         this.options = {
