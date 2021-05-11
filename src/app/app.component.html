@@ -9,20 +9,26 @@
                 <mat-grid-tile>
                     <app-time-percent-chart
                         [title]="'CPU utilization'"
-                        [data]="chartData | async"
+                        [data]="cpuUtilChart | async"
                     ></app-time-percent-chart>
                 </mat-grid-tile>
                 <mat-grid-tile>
-                    <app-time-percent-chart [title]="'CPU memory'" [data]="chartData | async"></app-time-percent-chart>
+                    <app-time-percent-chart
+                        [title]="'CPU memory'"
+                        [data]="cpuMemChart | async"
+                    ></app-time-percent-chart>
                 </mat-grid-tile>
                 <mat-grid-tile>
                     <app-time-percent-chart
                         [title]="'GPU utilization'"
-                        [data]="chartData | async"
+                        [data]="gpuUtilChart | async"
                     ></app-time-percent-chart>
                 </mat-grid-tile>
                 <mat-grid-tile>
-                    <app-time-percent-chart [title]="'GPU memory'" [data]="chartData | async"></app-time-percent-chart>
+                    <app-time-percent-chart
+                        [title]="'GPU memory'"
+                        [data]="gpuMemChart | async"
+                    ></app-time-percent-chart>
                 </mat-grid-tile>
             </mat-grid-list>
         </mat-card-content>

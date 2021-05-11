@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { QueryService } from './query.service';
 import { ChartLine } from './state-management/models';
 import { Observable, of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { State } from './state-management/state';
 
 @Component({
     selector: 'app-root',
@@ -10,13 +11,12 @@ import { Observable, of } from 'rxjs';
     encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
-    title = 'cluster-monitoring-frontend';
-    constructor(private query: QueryService) {
-        const now = new Date().getTime();
-        query.getNodeCpuLoad(now - 3 * 60000, now).subscribe((data) => console.log(data));
-        query.getNodeGpuLoad(now - 3 * 60000, now).subscribe((data) => console.log(data));
-        query.getUserCpuMem(now - 3 * 60000, now).subscribe((data) => console.log(data));
-    }
+    cpuUtilChart: Observable<ChartLine[]> = of([]);
+    cpuMemChart: Observable<ChartLine[]> = of([]);
+    gpuUtilChart: Observable<ChartLine[]> = of([]);
+    gpuMemChart: Observable<ChartLine[]> = of([]);
+
+    constructor(private store: Store<State>) {}
 
     chartData: Observable<ChartLine[]> = of([
         {
