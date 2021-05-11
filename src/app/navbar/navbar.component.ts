@@ -11,8 +11,8 @@ import { interval, Subscription } from 'rxjs';
     styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit, OnDestroy {
-    date = new FormControl(null, { updateOn: 'blur' });
-    hours = new FormControl(1, { updateOn: 'blur', validators: [Validators.min(1), Validators.max(24)] });
+    date = new FormControl(null);
+    hours = new FormControl(1, { validators: [Validators.min(1), Validators.max(24)] });
 
     private refreshInterval = interval(30000);
     private repeatSubs: Subscription | undefined;
