@@ -11,12 +11,17 @@ import { State } from './state-management/state';
     encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent {
-    cpuUtilChart: Observable<ChartLine[]> = of([]);
-    cpuMemChart: Observable<ChartLine[]> = of([]);
-    gpuUtilChart: Observable<ChartLine[]> = of([]);
-    gpuMemChart: Observable<ChartLine[]> = of([]);
+    cpuUtilChart: Observable<ChartLine[]>;
+    cpuMemChart: Observable<ChartLine[]>;
+    gpuUtilChart: Observable<ChartLine[]>;
+    gpuMemChart: Observable<ChartLine[]>;
 
-    constructor(private store: Store<State>) {}
+    constructor(private store: Store<State>) {
+        this.cpuUtilChart = store.select('cpuOverview', 'utilization');
+        this.cpuMemChart = store.select('cpuOverview', 'memory');
+        this.gpuUtilChart = store.select('gpuOverview', 'utilization');
+        this.gpuMemChart = store.select('gpuOverview', 'memory');
+    }
 
     chartData: Observable<ChartLine[]> = of([
         {
