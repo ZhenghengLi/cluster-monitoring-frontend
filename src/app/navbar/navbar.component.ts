@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { State } from '../state-management/state';
 
 @Component({
     selector: 'app-navbar',
@@ -10,28 +11,21 @@ import { Subscription } from 'rxjs';
 export class NavbarComponent implements OnInit, OnDestroy {
     date = new FormControl(null, { updateOn: 'blur' });
     hours = new FormControl(1, { updateOn: 'blur', validators: [Validators.min(1), Validators.max(24)] });
-    subs = new Subscription();
 
-    constructor() {}
+    constructor(private store: Store<State>) {}
 
     ngOnInit(): void {
-        this.subs.add(
-            this.date.valueChanges.subscribe(() => {
-                console.log(this.date.value);
-                console.log(this.date.valid);
-                this.hours.reset(null, { emitEvent: false });
-            })
-        );
-        this.subs.add(
-            this.hours.valueChanges.subscribe(() => {
-                console.log(this.hours.value);
-                console.log(this.hours.valid);
-                this.date.reset(null, { emitEvent: false });
-            })
-        );
+        this.date.valueChanges.subscribe(() => {
+            console.log(this.date.value);
+            console.log(this.date.valid);
+            this.hours.reset(null, { emitEvent: false });
+        });
+        this.hours.valueChanges.subscribe(() => {
+            console.log(this.hours.value);
+            console.log(this.hours.valid);
+            this.date.reset(null, { emitEvent: false });
+        });
     }
 
-    ngOnDestroy(): void {
-        this.subs.unsubscribe();
-    }
+    ngOnDestroy(): void {}
 }
