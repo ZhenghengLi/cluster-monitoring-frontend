@@ -14,6 +14,12 @@ export class TimePercentChartComponent implements OnInit {
     public initOpts: any = { renderer: 'svg' };
     public updateOptions: any = {};
 
+    public chartInstance: any;
+
+    onChartInit(e: any) {
+        this.chartInstance = e;
+    }
+
     @Input()
     set title(titleValue: string) {
         this.updateOptions = Object.assign({}, this.updateOptions, { title: { text: titleValue } });
@@ -21,6 +27,7 @@ export class TimePercentChartComponent implements OnInit {
     @Input()
     set data(chartData: ChartLine[] | null) {
         if (chartData === null) return;
+        if (chartData.length < 1) this.chartInstance?.setOption(this.options, true);
         // convert
         const legendData = [];
         const seriesData = [];
