@@ -17,10 +17,10 @@ export class AppComponent {
     gpuMemChart: Observable<ChartLine[]>;
 
     constructor(private store: Store<State>) {
-        this.cpuUtilChart = store.select('cpuOverview', 'utilization');
-        this.cpuMemChart = store.select('cpuOverview', 'memory');
-        this.gpuUtilChart = store.select('gpuOverview', 'utilization');
-        this.gpuMemChart = store.select('gpuOverview', 'memory');
+        this.cpuUtilChart = this.store.select('cpuOverview', 'utilization');
+        this.cpuMemChart = this.store.select('cpuOverview', 'memory');
+        this.gpuUtilChart = this.store.select('gpuOverview', 'utilization');
+        this.gpuMemChart = this.store.select('gpuOverview', 'memory');
     }
 
     chartData: Observable<ChartLine[]> = of([
