@@ -1,8 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { map } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { exhaustMap, map, catchError } from 'rxjs/operators';
 import { QueryService } from '../../query.service';
-import { lastHours, selectDate, nodeCpuLoadSuccess, nodeGpuLoadSuccess, userCpuMemSuccess } from '../actions';
+import {
+    lastHours,
+    nodeCpuLoadSuccess,
+    nodeCpuLoadFailure,
+    nodeGpuLoadSuccess,
+    nodeGpuLoadFailure,
+    userCpuMemSuccess,
+    userCpuMemFailure,
+} from '../actions';
 
 @Injectable()
 export class QueryEffects {
@@ -11,9 +20,13 @@ export class QueryEffects {
     getNodeCpuLoadHour = createEffect(() =>
         this.actions.pipe(
             ofType(lastHours),
-            map((action) => {
-                console.log('NodeCpuLoad', action.hours);
-                return nodeCpuLoadSuccess({ data: [] });
+            exhaustMap((action) => {
+                const maxTime = new Date().getTime();
+                const minTime = maxTime - action.hours * 3600 * 1000;
+                return this.query.getNodeCpuLoad(minTime, maxTime).pipe(
+                    map((data) => nodeCpuLoadSuccess({ data })),
+                    catchError((error) => of(nodeCpuLoadFailure({ error })))
+                );
             })
         )
     );
@@ -21,9 +34,13 @@ export class QueryEffects {
     getNodeGpuLoadHour = createEffect(() =>
         this.actions.pipe(
             ofType(lastHours),
-            map((action) => {
-                console.log('NodeGpuLoad', action.hours);
-                return nodeCpuLoadSuccess({ data: [] });
+            exhaustMap((action) => {
+                const maxTime = new Date().getTime();
+                const minTime = maxTime - action.hours * 3600 * 1000;
+                return this.query.getNodeGpuLoad(minTime, maxTime).pipe(
+                    map((data) => nodeGpuLoadSuccess({ data })),
+                    catchError((error) => of(nodeGpuLoadFailure({ error })))
+                );
             })
         )
     );
@@ -31,9 +48,13 @@ export class QueryEffects {
     getUserCpuMem = createEffect(() =>
         this.actions.pipe(
             ofType(lastHours),
-            map((action) => {
-                console.log('UserCpuMem', action.hours);
-                return nodeCpuLoadSuccess({ data: [] });
+            exhaustMap((action) => {
+                const maxTime = new Date().getTime();
+                const minTime = maxTime - action.hours * 3600 * 1000;
+                return this.query.getUserCpuMem(minTime, maxTime).pipe(
+                    map((data) => userCpuMemSuccess({ data })),
+                    catchError((error) => of(userCpuMemFailure({ error })))
+                );
             })
         )
     );
