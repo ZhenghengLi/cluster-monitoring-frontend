@@ -1,0 +1,37 @@
+import { NodeCpuLoad, ChartDevUtil, ChartLine } from '../models';
+
+export function nodeCpuLoad2ChartDevUtil(data: NodeCpuLoad[]): ChartDevUtil {
+    // group by node
+    const nodeUtil: { [node: string]: [number, number][] } = {};
+    const nodeMem: { [node: string]: [number, number][] } = {};
+    for (const record of data) {
+        if (typeof nodeUtil[record.node] === 'undefined') {
+            nodeUtil[record.node] = [];
+        }
+        if (typeof nodeMem[record.node] === 'undefined') {
+            nodeMem[record.node] = [];
+        }
+        nodeUtil[record.node].push([+record.time, Math.round(100 - record.idle)]);
+        nodeMem[record.node].push([+record.time, Math.round(record.memory)]);
+    }
+
+    const chartDevUtil: ChartDevUtil = {
+        utilization: [],
+        memory: [],
+    };
+
+    for (let node of Object.keys(nodeUtil).sort()) {
+        chartDevUtil.utilization.push({
+            name: node,
+            data: nodeUtil[node],
+        });
+    }
+    for (let node of Object.keys(nodeMem).sort()) {
+        chartDevUtil.memory.push({
+            name: node,
+            data: nodeMem[node],
+        });
+    }
+
+    return chartDevUtil;
+}

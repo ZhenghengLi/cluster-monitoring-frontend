@@ -67,7 +67,7 @@ export class TimePercentChartComponent implements OnInit {
             xAxis: {
                 boundaryGap: false,
                 type: 'time',
-                minInterval: 10000,
+                minInterval: 900000,
                 axisLabel: {
                     formatter: (value: number) => {
                         return new Date(value).toLocaleTimeString('en-US', { hour12: false });
@@ -82,6 +82,8 @@ export class TimePercentChartComponent implements OnInit {
                     padding: 20,
                 },
                 nameLocation: 'center',
+                min: 0,
+                max: 100,
             },
             tooltip: {
                 trigger: 'axis',
