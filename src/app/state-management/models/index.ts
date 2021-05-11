@@ -48,3 +48,13 @@ export interface ChartLine {
     name: string;
     data: [time: number, percent: number][];
 }
+
+export interface ChartDevUtil {
+    utilization: ChartLine[];
+    memory: ChartLine[];
+}
+
+export interface ChartUsers {
+    name: string;
+    chart: ChartDevUtil;
+}

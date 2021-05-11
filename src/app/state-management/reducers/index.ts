@@ -1,7 +1,15 @@
-import { ActionReducer, ActionReducerMap, createFeatureSelector, createSelector, MetaReducer } from '@ngrx/store';
+import { createReducer, on, ActionReducerMap, MetaReducer } from '@ngrx/store';
 import { environment } from '../../../environments/environment';
-import { State } from '../state';
+import { State, initialCpuOverview, initialGpuOverview, initialTopUsers } from '../state';
 
-export const reducers: ActionReducerMap<State> = {};
+const cpuOverviewReducer = createReducer(initialCpuOverview);
+const gpuOverviewReducer = createReducer(initialGpuOverview);
+const topUsersReducer = createReducer(initialTopUsers);
+
+export const reducers: ActionReducerMap<State> = {
+    cpuOverview: cpuOverviewReducer,
+    gpuOverview: gpuOverviewReducer,
+    topUsers: topUsersReducer,
+};
 
 export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
