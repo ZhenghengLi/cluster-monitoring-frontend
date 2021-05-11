@@ -12,10 +12,12 @@ export class TimePercentChartComponent implements OnInit {
     ngOnInit(): void {}
 
     public initOpts: any = { renderer: 'svg' };
-    public options: any;
+    public updateOptions: any = {};
 
     @Input()
-    title: string = '';
+    set title(titleValue: string) {
+        this.updateOptions = Object.assign({}, this.updateOptions, { title: { text: titleValue } });
+    }
     @Input()
     set data(chartData: ChartLine[] | null) {
         if (chartData === null) return;
@@ -36,67 +38,69 @@ export class TimePercentChartComponent implements OnInit {
             );
         }
         // update options
-        this.options = {
-            // data
+        this.updateOptions = Object.assign({}, this.updateOptions, {
             series: seriesData,
             legend: {
                 data: legendData,
-                type: 'scroll',
-                left: 6,
-                top: 'center',
-                orient: 'vertical',
-                height: '90%',
             },
-            title: {
-                text: this.title,
-                left: 'center',
-                textStyle: {
-                    fontWeight: 'bold',
-                    fontSize: 15,
-                    lineHeight: 27,
-                },
-            },
-            // others
-            animation: false,
-            grid: {
-                left: 100,
-                bottom: 30,
-                right: 60,
-                top: 45,
-            },
-            xAxis: {
-                boundaryGap: false,
-                type: 'time',
-                minInterval: 900000,
-                axisLabel: {
-                    formatter: (value: number) => {
-                        return new Date(value).toLocaleTimeString('en-US', { hour12: false });
-                    },
-                },
-            },
-            yAxis: {
-                position: 'right',
-                name: 'percent (%)',
-                nameTextStyle: {
-                    fontSize: 14,
-                    padding: 20,
-                },
-                nameLocation: 'center',
-                min: 0,
-                max: 100,
-            },
-            tooltip: {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'cross',
-                },
-                backgroundColor: 'rgba(255,255,255,0.8)',
-                position: (pos: Array<number>, params: any, dom: any, rect: any, size: any) => {
-                    let obj: any = { top: '5%' };
-                    obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = '5%';
-                    return obj;
-                },
-            },
-        };
+        });
     }
+
+    public options: any = {
+        legend: {
+            type: 'scroll',
+            left: 6,
+            top: 'center',
+            orient: 'vertical',
+            height: '90%',
+        },
+        title: {
+            left: 'center',
+            textStyle: {
+                fontWeight: 'bold',
+                fontSize: 15,
+                lineHeight: 27,
+            },
+        },
+        animation: false,
+        grid: {
+            left: 100,
+            bottom: 30,
+            right: 60,
+            top: 45,
+        },
+        xAxis: {
+            boundaryGap: false,
+            type: 'time',
+            minInterval: 900000,
+            axisLabel: {
+                formatter: (value: number) => {
+                    return new Date(value).toLocaleTimeString('en-US', { hour12: false });
+                },
+            },
+        },
+        yAxis: {
+            position: 'right',
+            name: 'percent (%)',
+            nameTextStyle: {
+                fontSize: 14,
+                padding: 20,
+            },
+            nameLocation: 'center',
+            min: 0,
+            max: 100,
+        },
+        tooltip: {
+            trigger: 'axis',
+            axisPointer: {
+                type: 'cross',
+            },
+            backgroundColor: 'rgba(255,255,255,0.8)',
+            position: (pos: Array<number>, params: any, dom: any, rect: any, size: any) => {
+                let obj: any = { top: '5%' };
+                obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = '5%';
+                return obj;
+            },
+        },
+    };
 }
