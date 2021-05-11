@@ -11,8 +11,8 @@ export function nodeCpuLoad2ChartDevUtil(data: NodeCpuLoad[]): ChartDevUtil {
         if (typeof nodeMem[record.node] === 'undefined') {
             nodeMem[record.node] = [];
         }
-        nodeUtil[record.node].push([+record.time, Math.round(100 - record.idle)]);
-        nodeMem[record.node].push([+record.time, Math.round(record.memory)]);
+        nodeUtil[record.node].push([+record.time, Math.round((100 - record.idle + Number.EPSILON) * 100) / 100]);
+        nodeMem[record.node].push([+record.time, Math.round((record.memory + Number.EPSILON) * 100) / 100]);
     }
 
     const chartDevUtil: ChartDevUtil = {
