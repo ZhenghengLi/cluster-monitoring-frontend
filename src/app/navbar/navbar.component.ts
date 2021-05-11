@@ -22,7 +22,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         if (this.hours.valid) {
             this.store.dispatch(lastHours({ hours: this.hours.value }));
-            this.repeatSubs = this.refreshInterval.subscribe(() => {
+            this.repeatSubs = this.refreshInterval.subscribe((v) => {
+                // console.log(v, this.hours.value);
                 this.store.dispatch(lastHours({ hours: this.hours.value }));
             });
         }
@@ -38,7 +39,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
             if (this.hours.valid) {
                 this.date.reset(null, { emitEvent: false });
                 this.store.dispatch(lastHours({ hours: this.hours.value }));
-                this.repeatSubs = this.refreshInterval.subscribe(() => {
+                if (!this.repeatSubs?.closed) this.repeatSubs?.unsubscribe();
+                this.repeatSubs = this.refreshInterval.subscribe((v) => {
+                    // console.log(v, this.hours.value);
                     this.store.dispatch(lastHours({ hours: this.hours.value }));
                 });
             }
