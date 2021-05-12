@@ -56,5 +56,6 @@ export interface ChartDevUtil {
 
 export interface ChartUsers {
     name: string;
-    chart: ChartDevUtil;
+    utilization: ChartLine[];
+    memory: ChartLine[];
 }

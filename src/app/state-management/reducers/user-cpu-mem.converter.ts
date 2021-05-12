@@ -53,7 +53,7 @@ export function userCpuMem2ChartUsers(data: UserCpuMem[]): ChartUsers[] {
                 data: userData[user.name].mem[node],
             });
         }
-        chartUsers.push({ name: user.name, chart });
+        chartUsers.push({ name: user.name, utilization: chart.utilization, memory: chart.memory });
     }
 
     return chartUsers;

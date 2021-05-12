@@ -1,5 +1,5 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { ChartLine } from './state-management/models';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { ChartLine, ChartUsers } from './state-management/models';
 import { Observable, of } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { State } from './state-management/state';
@@ -10,16 +10,24 @@ import { State } from './state-management/state';
     styleUrls: ['./app.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     cpuUtilChart: Observable<ChartLine[]>;
     cpuMemChart: Observable<ChartLine[]>;
     gpuUtilChart: Observable<ChartLine[]>;
     gpuMemChart: Observable<ChartLine[]>;
+
+    topUserCharts: Observable<ChartUsers[]>;
 
     constructor(private store: Store<State>) {
         this.cpuUtilChart = this.store.select('cpuOverview', 'utilization');
         this.cpuMemChart = this.store.select('cpuOverview', 'memory');
         this.gpuUtilChart = this.store.select('gpuOverview', 'utilization');
         this.gpuMemChart = this.store.select('gpuOverview', 'memory');
+
+        this.topUserCharts = this.store.select('topUsers');
+    }
+
+    ngOnInit(): void {
+        this.topUserCharts.subscribe((v) => console.log('app', v));
     }
 }
