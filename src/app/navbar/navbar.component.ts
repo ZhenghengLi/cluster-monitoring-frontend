@@ -20,7 +20,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     constructor(private store: Store<State>) {}
 
     ngOnInit(): void {
-        if (this.hours.valid) {
+        if (this.hours.valid && this.hours.value !== null) {
             const hours = this.hours.value;
             this.store.dispatch(lastHours({ hours }));
             this.repeatSubs = this.refreshInterval.subscribe(() => {
@@ -29,14 +29,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
         }
 
         this.date.valueChanges.subscribe(() => {
-            if (this.date.valid) {
+            if (this.date.valid && this.date.value !== null) {
                 this.hours.reset(null, { emitEvent: false });
                 if (!this.repeatSubs?.closed) this.repeatSubs?.unsubscribe();
                 this.store.dispatch(selectDate({ date: this.date.value }));
             }
         });
         this.hours.valueChanges.subscribe(() => {
-            if (this.hours.valid) {
+            if (this.hours.valid && this.hours.value !== null) {
                 const hours = this.hours.value;
                 this.date.reset(null, { emitEvent: false });
                 this.store.dispatch(lastHours({ hours }));
