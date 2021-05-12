@@ -19,6 +19,10 @@ export class AppComponent implements OnInit {
     topUsersChart: Observable<ChartUsers[]>;
     topUsersColumns: string[] = ['name', 'utilization', 'memory'];
 
+    trackChart(index: number, item: ChartUsers): string {
+        return item.name;
+    }
+
     constructor(private store: Store<State>) {
         this.cpuUtilChart = this.store.select('cpuOverview', 'utilization');
         this.cpuMemChart = this.store.select('cpuOverview', 'memory');
