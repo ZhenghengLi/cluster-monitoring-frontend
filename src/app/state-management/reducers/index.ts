@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment';
 import { State, initialCpuOverview, initialGpuOverview, initialTopUsers } from '../state';
 import { nodeCpuLoadSuccess, nodeGpuLoadSuccess, userCpuMemSuccess } from '../actions';
 import { nodeCpuLoad2ChartDevUtil } from './node-cpu-load.converter';
+import { nodeGpuLoad2ChartDevUtil } from './node-gpu-load.converter';
 import { ChartDevUtil } from '../models';
 
 const cpuOverviewReducer = createReducer(
@@ -15,7 +16,7 @@ const cpuOverviewReducer = createReducer(
 const gpuOverviewReducer = createReducer(
     initialGpuOverview,
     on(nodeGpuLoadSuccess, (state, action) => {
-        return state;
+        return nodeGpuLoad2ChartDevUtil(action.data);
     })
 );
 

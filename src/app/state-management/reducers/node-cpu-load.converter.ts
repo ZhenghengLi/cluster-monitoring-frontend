@@ -1,7 +1,6 @@
-import { NodeCpuLoad, ChartDevUtil, ChartLine } from '../models';
+import { NodeCpuLoad, ChartDevUtil } from '../models';
 
 export function nodeCpuLoad2ChartDevUtil(data: NodeCpuLoad[]): ChartDevUtil {
-    // group by node
     const nodeUtil: { [node: string]: [number, number][] } = {};
     const nodeMem: { [node: string]: [number, number][] } = {};
     for (const record of data) {
