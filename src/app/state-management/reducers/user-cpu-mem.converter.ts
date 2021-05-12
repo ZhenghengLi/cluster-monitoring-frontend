@@ -10,6 +10,7 @@ export function userCpuMem2ChartUsers(data: UserCpuMem[]): ChartUsers[] {
         };
     } = {};
 
+    // collect data
     for (const record of data) {
         if (typeof userData[record.user] === 'undefined') {
             userData[record.user] = { cpu: {}, mem: {}, cpuTotal: 0, memTotal: 0 };
@@ -28,7 +29,32 @@ export function userCpuMem2ChartUsers(data: UserCpuMem[]): ChartUsers[] {
         userData[record.user].memTotal += mem;
     }
 
-    const chartUsers: ChartUsers[] = [];
+    // sort users
+    const userList: { name: string; cpumem: number }[] = [];
+    for (const name in userData) {
+        const cpumem = userData[name].cpuTotal + userData[name].memTotal;
+        userList.push({ name, cpumem });
+    }
+    userList.sort((a, b) => b.cpumem - a.cpumem);
 
-    return [];
+    // convert
+    const chartUsers: ChartUsers[] = [];
+    for (const user of userList) {
+        const chart: ChartDevUtil = { utilization: [], memory: [] };
+        for (const node in userData[user.name].cpu) {
+            chart.utilization.push({
+                name: node,
+                data: userData[user.name].cpu[node],
+            });
+        }
+        for (const node in userData[user.name].mem) {
+            chart.memory.push({
+                name: node,
+                data: userData[user.name].mem[node],
+            });
+        }
+        chartUsers.push({ name: user.name, chart });
+    }
+
+    return chartUsers;
 }
