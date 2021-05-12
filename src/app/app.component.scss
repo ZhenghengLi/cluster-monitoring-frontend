@@ -31,8 +31,16 @@ mat-grid-tile {
 
 table {
     width: 100%;
+    table-layout: fixed;
     .mat-header-cell {
         font-size: 18px;
+    }
+    th.col1 {
+        width: 10%;
+    }
+    th.col2,
+    th.col3 {
+        width: 45%;
     }
     td.col1,
     td.col2,
@@ -40,14 +48,7 @@ table {
         height: 200px;
         padding-top: 10px;
         padding-bottom: 10px;
-    }
-    td.col1 {
-        width: 10%;
         font-size: 18px;
-    }
-    td.col2,
-    td.col3 {
-        width: 45%;
     }
     td.col2 {
         padding-right: 15px;

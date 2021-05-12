@@ -40,17 +40,17 @@
         <mat-card-content>
             <table *ngIf="topUsersChart | async as chartData" mat-table [dataSource]="chartData">
                 <ng-container matColumnDef="name">
-                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <th class="col1" mat-header-cell *matHeaderCellDef>Name</th>
                     <td class="col1" mat-cell *matCellDef="let element">{{ element.name }}</td>
                 </ng-container>
                 <ng-container matColumnDef="utilization">
-                    <th mat-header-cell *matHeaderCellDef>CPU utilization</th>
+                    <th class="col2" mat-header-cell *matHeaderCellDef>CPU utilization</th>
                     <td class="col2" mat-cell *matCellDef="let element">
                         <app-time-percent-chart [data]="element.utilization"></app-time-percent-chart>
                     </td>
                 </ng-container>
                 <ng-container matColumnDef="memory">
-                    <th mat-header-cell *matHeaderCellDef>CPU memory</th>
+                    <th class="col3" mat-header-cell *matHeaderCellDef>CPU memory</th>
                     <td class="col3" mat-cell *matCellDef="let element">
                         <app-time-percent-chart [data]="element.memory"></app-time-percent-chart>
                     </td>
