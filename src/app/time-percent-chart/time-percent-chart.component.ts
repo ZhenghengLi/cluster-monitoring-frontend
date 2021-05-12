@@ -104,7 +104,7 @@ export class TimePercentChartComponent implements OnInit {
             },
             backgroundColor: 'rgba(255,255,255,0.8)',
             position: (pos: Array<number>, params: any, dom: any, rect: any, size: any) => {
-                let obj: any = { top: '5%' };
+                let obj: any = { top: 'center' };
                 obj[['left', 'right'][+(pos[0] < size.viewSize[0] / 2)]] = '5%';
                 return obj;
             },
