@@ -64,8 +64,8 @@ export class TimePercentChartComponent implements OnInit {
         title: {
             left: 'center',
             textStyle: {
-                fontWeight: 'bold',
-                fontSize: 15,
+                fontWeight: 'normal',
+                fontSize: 18,
                 lineHeight: 27,
             },
         },

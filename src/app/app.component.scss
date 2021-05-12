@@ -32,7 +32,7 @@ mat-grid-tile {
 table {
     width: 100%;
     .mat-header-cell {
-        font-size: 15px;
+        font-size: 18px;
     }
     td.col1,
     td.col2,
@@ -43,14 +43,14 @@ table {
     }
     td.col1 {
         width: 10%;
-        font-size: 15px;
+        font-size: 18px;
     }
     td.col2,
     td.col3 {
         width: 45%;
     }
     td.col2 {
-        padding-right: 10px;
+        padding-right: 15px;
     }
     app-time-percent-chart {
         div.chart-container {
