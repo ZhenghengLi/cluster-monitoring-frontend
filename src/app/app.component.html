@@ -41,7 +41,15 @@
             <table *ngIf="topUsersChart | async as chartData" mat-table [dataSource]="chartData" [trackBy]="trackChart">
                 <ng-container matColumnDef="name">
                     <th class="col1" mat-header-cell *matHeaderCellDef>Name</th>
-                    <td class="col1" mat-cell *matCellDef="let element">{{ element.name }}</td>
+                    <td class="col1" mat-cell *matCellDef="let element">
+                        <mat-list>
+                            <mat-list-item> real name </mat-list-item>
+                            <mat-divider [inset]="true"></mat-divider>
+                            <mat-list-item>
+                                {{ element.name }}
+                            </mat-list-item>
+                        </mat-list>
+                    </td>
                 </ng-container>
                 <ng-container matColumnDef="utilization">
                     <th class="col2" mat-header-cell *matHeaderCellDef>CPU utilization</th>

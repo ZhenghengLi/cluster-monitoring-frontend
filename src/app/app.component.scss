@@ -29,6 +29,15 @@ mat-grid-tile {
     @include mat-elevation(2);
 }
 
+mat-list {
+    width: 75%;
+    min-width: 100px;
+}
+
+.mat-list-item-content {
+    font-size: 18px;
+}
+
 table {
     width: 100%;
     table-layout: fixed;
