@@ -33,11 +33,6 @@ mat-list {
     width: 90%;
 }
 
-.mat-list-item-content {
-    padding: 0 !important;
-    font-size: 18px;
-}
-
 table {
     width: 100%;
     table-layout: fixed;
@@ -57,7 +52,10 @@ table {
         height: 210px;
         padding-top: 10px;
         padding-bottom: 10px;
-        font-size: 18px;
+        .mat-list-item-content {
+            padding: 0 !important;
+            font-size: 18px;
+        }
     }
     td.col2 {
         padding-right: 15px;
