@@ -27,7 +27,7 @@ export class TimePercentChartComponent implements OnInit {
     @Input()
     set data(chartData: ChartLine[] | null) {
         if (chartData === null) return;
-        if (chartData.length < 1) this.chartInstance?.setOption(this.options, true);
+        this.chartInstance?.setOption(this.options, true);
         // convert
         const legendData = [];
         const seriesData = [];
