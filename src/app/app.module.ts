@@ -13,6 +13,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTableModule } from '@angular/material/table';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +52,7 @@ import { environment } from '../environments/environment';
         MatDividerModule,
         MatListModule,
         MatGridListModule,
+        MatTableModule,
     ],
     providers: [],
     bootstrap: [AppComponent],

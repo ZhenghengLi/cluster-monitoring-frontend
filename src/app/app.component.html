@@ -39,13 +39,22 @@
         </mat-card-header>
         <mat-divider [inset]="true"></mat-divider>
         <mat-card-content>
-            <mat-list>
-                <mat-list-item> abc </mat-list-item>
-                <mat-divider [inset]="true"></mat-divider>
-                <mat-list-item> def </mat-list-item>
-                <mat-divider [inset]="true"></mat-divider>
-                <mat-list-item> xyz </mat-list-item>
-            </mat-list>
+            <table *ngIf="topUsersChart | async as chartData" mat-table [dataSource]="chartData">
+                <ng-container matColumnDef="name">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td mat-cel *matCellDef="let element">{{ element.name }}</td>
+                </ng-container>
+                <ng-container matColumnDef="utilization">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td mat-cel *matCellDef="let element">{{ element.utilization.length }}</td>
+                </ng-container>
+                <ng-container matColumnDef="memory">
+                    <th mat-header-cell *matHeaderCellDef>Name</th>
+                    <td mat-cel *matCellDef="let element">{{ element.memory.length }}</td>
+                </ng-container>
+                <tr mat-header-row *matHeaderRowDef="topUsersColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: topUsersColumns"></tr>
+            </table>
         </mat-card-content>
     </mat-card>
 </div>

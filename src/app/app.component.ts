@@ -16,7 +16,8 @@ export class AppComponent implements OnInit {
     gpuUtilChart: Observable<ChartLine[]>;
     gpuMemChart: Observable<ChartLine[]>;
 
-    topUserCharts: Observable<ChartUsers[]>;
+    topUsersChart: Observable<ChartUsers[]>;
+    topUsersColumns: string[] = ['name', 'utilization', 'memory'];
 
     constructor(private store: Store<State>) {
         this.cpuUtilChart = this.store.select('cpuOverview', 'utilization');
@@ -24,10 +25,10 @@ export class AppComponent implements OnInit {
         this.gpuUtilChart = this.store.select('gpuOverview', 'utilization');
         this.gpuMemChart = this.store.select('gpuOverview', 'memory');
 
-        this.topUserCharts = this.store.select('topUsers');
+        this.topUsersChart = this.store.select('topUsers');
     }
 
     ngOnInit(): void {
-        this.topUserCharts.subscribe((v) => console.log('app', v));
+        this.topUsersChart.subscribe((v) => console.log('app', v));
     }
 }

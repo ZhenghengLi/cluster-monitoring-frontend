@@ -28,3 +28,7 @@ mat-grid-tile {
     z-index: 2;
     @include mat-elevation(2);
 }
+
+table {
+    width: 100%;
+}
