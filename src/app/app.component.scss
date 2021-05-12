@@ -31,4 +31,30 @@ mat-grid-tile {
 
 table {
     width: 100%;
+    .mat-header-cell {
+        font-size: 15px;
+    }
+    td.col1,
+    td.col2,
+    td.col3 {
+        height: 200px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    td.col1 {
+        width: 10%;
+        font-size: 15px;
+    }
+    td.col2,
+    td.col3 {
+        width: 45%;
+    }
+    td.col2 {
+        padding-right: 10px;
+    }
+    app-time-percent-chart {
+        div.chart-container {
+            @include mat-elevation(2);
+        }
+    }
 }
