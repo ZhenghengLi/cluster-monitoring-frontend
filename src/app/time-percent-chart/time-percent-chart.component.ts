@@ -110,6 +110,7 @@ export class TimePercentChartComponent implements OnInit {
             },
         },
         toolbox: {
+            right: 5,
             feature: {
                 dataZoom: {
                     yAxisIndex: false,
