@@ -12,7 +12,7 @@ export function nodeGpuLoad2ChartDevUtil(data: NodeGpuLoad[]): ChartDevUtil {
         if (typeof nodeUtil[record.node][record.busid] === 'undefined') {
             nodeUtil[record.node][record.busid] = [];
         }
-        nodeUtil[record.node][record.busid].push([+record.time, record.gpu]);
+        nodeUtil[record.node][record.busid].push([+record.time, Math.round((record.gpu + Number.EPSILON) * 100) / 100]);
         // memory
         if (typeof nodeMem[record.node] === 'undefined') {
             nodeMem[record.node] = {};
@@ -20,7 +20,7 @@ export function nodeGpuLoad2ChartDevUtil(data: NodeGpuLoad[]): ChartDevUtil {
         if (typeof nodeMem[record.node][record.busid] === 'undefined') {
             nodeMem[record.node][record.busid] = [];
         }
-        nodeMem[record.node][record.busid].push([+record.time, record.mem]);
+        nodeMem[record.node][record.busid].push([+record.time, Math.round((record.mem + Number.EPSILON) * 100) / 100]);
     }
 
     const chartDevUtil: ChartDevUtil = {
