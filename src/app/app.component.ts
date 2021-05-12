@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
 
     topUsersChart: Observable<ChartUsers[]>;
     topUsersColumns: string[] = ['name', 'utilization', 'memory'];
-    nameMap = {};
+    nameMap: any = {};
 
     trackChart(index: number, item: ChartUsers): string {
         return item.name;
