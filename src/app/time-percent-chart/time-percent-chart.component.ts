@@ -97,6 +97,7 @@ export class TimePercentChartComponent implements OnInit {
             min: 0,
             max: 100,
         },
+        sampling: 'lttb',
         tooltip: {
             trigger: 'axis',
             axisPointer: {
