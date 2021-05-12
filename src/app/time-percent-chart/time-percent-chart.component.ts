@@ -74,7 +74,7 @@ export class TimePercentChartComponent implements OnInit {
             left: 100,
             bottom: 30,
             right: 60,
-            top: 45,
+            top: 50,
         },
         xAxis: {
             boundaryGap: false,
@@ -111,6 +111,7 @@ export class TimePercentChartComponent implements OnInit {
         },
         toolbox: {
             right: 5,
+            showTitle: false,
             feature: {
                 dataZoom: {
                     yAxisIndex: false,
