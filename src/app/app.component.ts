@@ -28,7 +28,5 @@ export class AppComponent implements OnInit {
         this.topUsersChart = this.store.select('topUsers');
     }
 
-    ngOnInit(): void {
-        this.topUsersChart.subscribe((v) => console.log('app', v));
-    }
+    ngOnInit(): void {}
 }

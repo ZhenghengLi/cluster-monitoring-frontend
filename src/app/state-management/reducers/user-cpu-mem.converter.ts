@@ -1,5 +1,27 @@
 import { ChartUsers, ChartDevUtil, UserCpuMem } from '../models';
 
+function fillGap(data: [number, number][], gap: number): [number, number][] {
+    if (data.length < 2) return data;
+    if (gap <= 0) return data;
+    // sort data
+    data.sort((a, b) => a[0] - b[0]);
+    // fill gap
+    const result: [number, number][] = [data[0]];
+    for (let idx = 1; idx < data.length; idx++) {
+        const t0 = data[idx - 1][0];
+        const t1 = data[idx][0];
+        if (t1 - t0 > gap) {
+            result.push([t0 + gap / 3, 0]);
+            result.push([t1 - gap / 3, 0]);
+            result.push(data[idx]);
+        } else {
+            result.push(data[idx]);
+        }
+    }
+    // return
+    return result;
+}
+
 export function userCpuMem2ChartUsers(data: UserCpuMem[]): ChartUsers[] {
     const userData: {
         [name: string]: {
@@ -27,6 +49,12 @@ export function userCpuMem2ChartUsers(data: UserCpuMem[]): ChartUsers[] {
         userData[record.user].mem[record.node].push([+record.time, mem]);
         userData[record.user].cpuTotal += cpu;
         userData[record.user].memTotal += mem;
+    }
+
+    // fill gaps
+    for (const user in userData) {
+        for (const node in userData[user].cpu) userData[user].cpu[node] = fillGap(userData[user].cpu[node], 150000);
+        for (const node in userData[user].mem) userData[user].mem[node] = fillGap(userData[user].mem[node], 150000);
     }
 
     // sort users
