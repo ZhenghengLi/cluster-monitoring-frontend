@@ -43,11 +43,13 @@
                     <th class="col1" mat-header-cell *matHeaderCellDef>Name</th>
                     <td class="col1" mat-cell *matCellDef="let element">
                         <mat-list>
-                            <mat-list-item> real name </mat-list-item>
-                            <mat-divider [inset]="true"></mat-divider>
                             <mat-list-item>
                                 {{ element.name }}
                             </mat-list-item>
+                            <ng-container *ngIf="nameMap[element.name]">
+                                <mat-divider [inset]="true"></mat-divider>
+                                <mat-list-item> {{ nameMap[element.name] }} </mat-list-item>
+                            </ng-container>
                         </mat-list>
                     </td>
                 </ng-container>
