@@ -4,7 +4,7 @@ import { State, initialCpuOverview, initialGpuOverview, initialTopUsers } from '
 import { nodeCpuLoadSuccess, nodeGpuLoadSuccess, userCpuMemSuccess } from '../actions';
 import { nodeCpuLoad2ChartDevUtil } from './node-cpu-load.converter';
 import { nodeGpuLoad2ChartDevUtil } from './node-gpu-load.converter';
-import { ChartDevUtil } from '../models';
+import { userCpuMem2ChartUsers } from './user-cpu-mem.converter';
 
 const cpuOverviewReducer = createReducer(
     initialCpuOverview,
@@ -23,7 +23,7 @@ const gpuOverviewReducer = createReducer(
 const topUsersReducer = createReducer(
     initialTopUsers,
     on(userCpuMemSuccess, (state, action) => {
-        return state;
+        return userCpuMem2ChartUsers(action.data);
     })
 );
 
