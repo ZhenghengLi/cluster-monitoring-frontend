@@ -4,7 +4,6 @@ import { Observable, of } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Store } from '@ngrx/store';
 import { State } from './state-management/state';
-import { skip } from 'rxjs/operators';
 
 @Component({
     selector: 'app-root',
@@ -27,11 +26,11 @@ export class AppComponent implements OnInit {
     }
 
     constructor(private store: Store<State>, private http: HttpClient) {
-        this.cpuUtilChart = this.store.select('cpuOverview', 'utilization').pipe(skip(1));
-        this.cpuMemChart = this.store.select('cpuOverview', 'memory').pipe(skip(1));
-        this.gpuUtilChart = this.store.select('gpuOverview', 'utilization').pipe(skip(1));
-        this.gpuMemChart = this.store.select('gpuOverview', 'memory').pipe(skip(1));
-        this.topUsersChart = this.store.select('topUsers').pipe(skip(1));
+        this.cpuUtilChart = this.store.select('cpuOverview', 'utilization');
+        this.cpuMemChart = this.store.select('cpuOverview', 'memory');
+        this.gpuUtilChart = this.store.select('gpuOverview', 'utilization');
+        this.gpuMemChart = this.store.select('gpuOverview', 'memory');
+        this.topUsersChart = this.store.select('topUsers');
         // load user map
         const nameMapUrl = 'assets/name-map.json';
         this.http.get<{ [name: string]: string }>(nameMapUrl).subscribe((data) => (this.nameMap = data));

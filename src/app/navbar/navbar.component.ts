@@ -3,7 +3,7 @@ import { FormControl, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { State } from '../state-management/state';
 import { lastHours, selectDate } from '../state-management/actions';
-import { interval, Subscription } from 'rxjs';
+import { interval, Subscription, timer } from 'rxjs';
 
 @Component({
     selector: 'app-navbar',
@@ -22,10 +22,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         if (this.hours.valid && this.hours.value !== null) {
             const hours = this.hours.value;
-            this.store.dispatch(lastHours({ hours }));
             this.repeatSubs = this.refreshInterval.subscribe(() => {
                 this.store.dispatch(lastHours({ hours }));
             });
+            timer(500).subscribe(() => this.store.dispatch(lastHours({ hours })));
         }
 
         this.date.valueChanges.subscribe(() => {
