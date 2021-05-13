@@ -8,26 +8,30 @@
             <mat-grid-list cols="2" rowHeight="250px" gutterSize="16px">
                 <mat-grid-tile>
                     <app-time-percent-chart
+                        *ngIf="cpuUtilChart | async as chartData"
                         [title]="'CPU utilization'"
-                        [data]="cpuUtilChart | async"
+                        [data]="chartData"
                     ></app-time-percent-chart>
                 </mat-grid-tile>
                 <mat-grid-tile>
                     <app-time-percent-chart
+                        *ngIf="cpuMemChart | async as chartData"
                         [title]="'CPU memory'"
-                        [data]="cpuMemChart | async"
+                        [data]="chartData"
                     ></app-time-percent-chart>
                 </mat-grid-tile>
                 <mat-grid-tile>
                     <app-time-percent-chart
+                        *ngIf="gpuUtilChart | async as chartData"
                         [title]="'GPU utilization'"
-                        [data]="gpuUtilChart | async"
+                        [data]="chartData"
                     ></app-time-percent-chart>
                 </mat-grid-tile>
                 <mat-grid-tile>
                     <app-time-percent-chart
+                        *ngIf="gpuMemChart | async as chartData"
                         [title]="'GPU memory'"
-                        [data]="gpuMemChart | async"
+                        [data]="chartData"
                     ></app-time-percent-chart>
                 </mat-grid-tile>
             </mat-grid-list>

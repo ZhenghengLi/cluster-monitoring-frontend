@@ -12,56 +12,34 @@ export class TimePercentChartComponent implements OnInit {
     ngOnInit(): void {}
 
     public initOpts: any = { renderer: 'svg' };
-    public updateOptions: any = {};
-
-    public chartInstance: any;
-
-    onChartInit(e: any) {
-        this.chartInstance = e;
-    }
+    public options: any;
 
     @Input()
     set title(titleValue: string) {
-        this.updateOptions = Object.assign({}, this.updateOptions, { title: { text: titleValue } });
+        this.dynamicOptions.title.text = titleValue;
+        this.options = { ...this.staticOptions, ...this.dynamicOptions };
     }
     @Input()
-    set data(chartData: ChartLine[] | null) {
-        if (chartData === null) return;
-        this.chartInstance?.setOption(this.options, true);
-        // convert
-        const legendData = [];
-        const seriesData = [];
+    set data(chartData: ChartLine[]) {
+        this.dynamicOptions.series = [];
+        this.dynamicOptions.legend.data = [];
         for (let line of chartData) {
-            legendData.push(line.name);
-            seriesData.push(
-                Object.assign(
-                    {
-                        type: 'line',
-                        smooth: true,
-                        showSymbol: false,
-                    },
-                    line
-                )
-            );
+            this.dynamicOptions.legend.data.push(line.name);
+            this.dynamicOptions.series.push({
+                ...line,
+                ...{
+                    type: 'line',
+                    smooth: true,
+                    showSymbol: false,
+                },
+            });
         }
-        // update options
-        this.updateOptions = Object.assign({}, this.updateOptions, {
-            series: seriesData,
-            legend: {
-                data: legendData,
-            },
-        });
+        this.options = { ...this.staticOptions, ...this.dynamicOptions };
     }
 
-    public options: any = {
-        legend: {
-            type: 'scroll',
-            left: 6,
-            top: 'center',
-            orient: 'vertical',
-            height: '90%',
-        },
+    public dynamicOptions = {
         title: {
+            text: '' as string,
             left: 'center',
             textStyle: {
                 fontWeight: 'normal',
@@ -69,6 +47,18 @@ export class TimePercentChartComponent implements OnInit {
                 lineHeight: 27,
             },
         },
+        series: [] as any[],
+        legend: {
+            data: [] as string[],
+            type: 'scroll',
+            left: 6,
+            top: 'center',
+            orient: 'vertical',
+            height: '90%',
+        },
+    };
+
+    public staticOptions: any = {
         animation: false,
         grid: {
             left: 100,
