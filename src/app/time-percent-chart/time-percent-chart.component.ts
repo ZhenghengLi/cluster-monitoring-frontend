@@ -72,7 +72,7 @@ export class TimePercentChartComponent implements OnInit {
             minInterval: 900000,
             axisLabel: {
                 formatter: (value: number) => {
-                    return new Date(value).toLocaleTimeString('en-US', { hour12: false });
+                    return new Date(value).toLocaleTimeString('en-US', { hour12: false }).substring(0, 5);
                 },
             },
         },
