@@ -16,8 +16,14 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     private refreshInterval = interval(30000);
     private repeatSubs: Subscription | undefined;
+    private timeSubs: Subscription | undefined;
 
-    constructor(private store: Store<State>) {}
+    currentTime: Date;
+
+    constructor(private store: Store<State>) {
+        this.currentTime = new Date();
+        this.timeSubs = interval(1000).subscribe(() => (this.currentTime = new Date()));
+    }
 
     ngOnInit(): void {
         if (this.hours.valid && this.hours.value !== null) {
@@ -50,5 +56,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
     ngOnDestroy(): void {
         if (!this.repeatSubs?.closed) this.repeatSubs?.unsubscribe();
+        if (!this.timeSubs?.closed) this.timeSubs?.unsubscribe();
     }
 }
